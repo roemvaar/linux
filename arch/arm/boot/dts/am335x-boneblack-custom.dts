@@ -1,0 +1,36 @@
+// SDP-License-Identifier: GPL-2.0
+#include "am335x-boneblack.dts"
+
+/ {
+	model = "Training Beagle Bone Black";
+};
+
+/ {
+    leds {
+        led2 {
+            default-state = "on";
+        };
+        led3 {
+            default-state = "on";
+        };
+        led4 {
+            default-state = "on";
+        };
+        led5 {
+            default-state = "on";
+        };
+    };
+};
+
+// https://www.kernel.org/doc/Documentation/devicetree/bindings/i2c/i2c-omap.txt
+// clock-frequency : Desired I2C bus clock frequency in Hz. Otherwise
+// the default 100 kHz frequency will be used.
+&i2c1 {
+    status = "okay";
+    clock-frequency = <100000>;
+
+    nunchuk@52 {
+        compatible = "nintendo,nunchuk";
+        reg = <0x52>;
+    };
+};
