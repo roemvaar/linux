@@ -22,10 +22,22 @@
     };
 };
 
+&am33xx_pinmux {
+        i2c1_pins: pinmux_i2c1_pins {
+                pinctrl-single,pins = <
+                        AM33XX_PADCONF(AM335X_PIN_SPI0_D1, PIN_INPUT_PULLUP, MUX_MODE2)     /* spi0_d1.i2c1_sda */
+                        AM33XX_PADCONF(AM335X_PIN_SPI0_CS0, PIN_INPUT_PULLUP, MUX_MODE2)    /* spi0_cs0.i2c1_scl */
+                >;
+        };
+};
+
 // https://www.kernel.org/doc/Documentation/devicetree/bindings/i2c/i2c-omap.txt
 // clock-frequency : Desired I2C bus clock frequency in Hz. Otherwise
 // the default 100 kHz frequency will be used.
 &i2c1 {
+    pinctrl-names = "default";
+    pinctrl-0 = <&i2c1_pins>;
+
     status = "okay";
     clock-frequency = <100000>;
 
